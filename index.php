@@ -1,3 +1,7 @@
+<?php
+	include_once('config.php');
+	$read = $conexao->query("SELECT * FROM estudantes");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +12,7 @@
 </head>
 <body>
 	<h1 style="text-align: center;">Crud Estudantes</h1>
+	<a href="add.php">Adicionar Estudante</a>
 	<div class="conteiner">
 		<div class="col-xs-12">
 			<table class="table">
@@ -20,7 +25,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					<?php while($estudante = mysqli_fetch_assoc($read)) { ?>
+						<tr>
+							<td><?php echo $estudante['nome']; ?></td>
+							<td><?php echo $estudante['idade']; ?></td>
+							<td><?php echo $estudante['id']; ?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
